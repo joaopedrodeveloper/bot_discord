@@ -6,6 +6,7 @@ from modules.autenticacao import cadastra, codigo
 from modules.le_arquivos import le_arquivos_csv
 from modules.log.log import salva_erro_em_log
 from modules.ban.ban import verifica_ban_usuario
+from constantes import NOME_SERVIDOR_DISCORD
 
 load_dotenv()
 
@@ -18,7 +19,7 @@ async def on_ready():
     print(f'Voce logou como {bot.user}')
 
     for guild in bot.guilds:
-        if str(guild) == 'IFPB - Engenharia de Computação':
+        if str(guild) == NOME_SERVIDOR_DISCORD:
             await verifica_ban_usuario(guild)
         
 
