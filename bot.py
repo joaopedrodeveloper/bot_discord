@@ -41,6 +41,27 @@ async def on_member_join(member):
 async def on_member_remove(member):
     le_arquivos_csv.remove_usuario_do_arquivo_cadastro(member)
 
+@bot.command(name="stackoverflow")
+async def stack_overflow(ctx):
+    from constantes import NOME_CANAL_STACK_OVERFLOW
+    from apps.stack_overflow import fazer_pesquisa_stackoverflow
+
+    if ctx.channel.name == NOME_CANAL_STACK_OVERFLOW:
+        await ctx.channel.send(f'{ctx.author.mention} Qual sua dúvida? **ATENÇÃO!!** Faça suas perguntas em inglês e curtas. Exemplo: python bot')
+
+        pergunta = await bot.wait_for('message', check=lambda m: m.author == ctx.author)
+        pergunta = pergunta.content
+        pergunta = pergunta.lower().strip()
+
+        resposta_stack_overflow = fazer_pesquisa_stackoverflow(pergunta)
+        resultado = resposta_stack_overflow[0]
+
+        if resultado == False:
+            await ctx.channel.send('Não encontrei nada relacionado. Tente pesquisar no seu navegador.')
+        if resultado:
+            await ctx.channel.send(f'{ctx.author.mention} Aqui está o resultado da pesquisa. {resultado}')
+        
+
 
 API_KEY = os.getenv('DISCORD_API_KEY')
 bot.run(API_KEY)

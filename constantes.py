@@ -42,4 +42,4 @@ COLUNA_MATRICULADOS_DISCIPLINAS_CSV = 'matriculados'
 #         'cargo_id_discord': 1120870943460442245,
 #     }
 # ]
-    
+NOME_CANAL_STACK_OVERFLOW = 'stack-overflow'
