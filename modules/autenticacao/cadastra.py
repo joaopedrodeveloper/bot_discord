@@ -89,6 +89,8 @@ async def conclui_cadastro_usuario(member, bot, email):
                 await cargo.adiciona_cargo(member, CARGO_ID_PROFESSORES)
             elif retorno_aluno:
                 nome = dados_aluno[ALUNOS_CSV_COLUNA_NOME].values[0]
+                nome = nome.split()
+                nome = f"{nome[0]} {nome[-1]}"
                 await cargo.adiciona_cargo(member, CARGO_ID_ALUNOS)
                 # await verifica_disciplinas_matriculadas(email, member)
         
