@@ -84,9 +84,12 @@ async def conclui_cadastro_usuario(member, bot, email):
             retorno_aluno, dados_aluno = le_arquivos_csv.encontra_dado(ALUNOS_CSV, ALUNOS_CSV_COLUNA_EMAIL_ACADEMICO, email)
             if retorno_professor:
                 nome = dados_professor[PROFESSORES_CSV_COLUNA_NOME].values[0]
+                nome = nome.split()
+                nome = f"{nome[0]} {nome[-1]}"
                 await cargo.adiciona_cargo(member, CARGO_ID_PROFESSORES)
             elif retorno_aluno:
                 nome = dados_aluno[ALUNOS_CSV_COLUNA_NOME].values[0]
+                print(nome)
                 await cargo.adiciona_cargo(member, CARGO_ID_ALUNOS)
                 # await verifica_disciplinas_matriculadas(email, member)
         
